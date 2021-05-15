@@ -10,3 +10,13 @@ if ('serviceWorker' in navigator) {
 } else {
     console.log('No Service Worker capability 😔');
 }
+
+// Installing the PWA
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+
+    
+});
