@@ -12,10 +12,12 @@ const resourcesToPrecache = [
 
 self.addEventListener('install', (event) => {
     // Precaching needs to be done here
-    event.waitUntil(caches.open(cacheName)
-        .then((cache) => {
-            cache.addAll(resourcesToPrecache);
-    }));
+    event.waitUntil(
+        caches
+            .open(cacheName)
+            .then((cache) => { cache.addAll(resourcesToPrecache); })
+            .then(() => { self.skipWaiting(); })
+    );
 });
 
 self.addEventListener('fetch', (event) => {
