@@ -3,12 +3,14 @@ const resourcesToPrecache = [
     '/',
     '/index.html',
     '/main.js',
-    '/main.css'
+    '/main.css',
+    '/manifest.json',
+    '/images/favicon.svg',
+    '/images/nuxt-icon.png',
+    '/images/nuxt-pwa.svg'
 ];
 
 self.addEventListener('install', (event) => {
-    console.log(event);
-
     // Precaching needs to be done here
     event.waitUntil(caches.open(cacheName)
         .then((cache) => {
@@ -17,8 +19,6 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    console.log(event);
-
     // Intercepting http requests - decide to serve files from cache or fallback to server
     event.respondWith(
         caches.match(event.request) || fetch(event.request)
