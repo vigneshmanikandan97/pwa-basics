@@ -2,8 +2,8 @@ const cacheName = 'cache-v1';
 const resourcesToPrecache = [
     '/',
     '/index.html',
-    '/main.js',
-    '/main.css',
+    '/js/main.js',
+    '/styles/main.css',
     '/manifest.json',
     '/images/favicon.svg',
     '/images/nuxt-icon.png',
