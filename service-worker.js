@@ -28,7 +28,16 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-    console.log(event);
-
     // Update cache - post internet connection
+    event.waitUntil(
+        caches.keys()
+            .then(cacheNames => {
+                return Promise.all(cacheNames.map(cache => {
+                    if (cache !== cacheName) {
+                        console.log("SW cleared old cache");
+                        return caches.delete(cache);
+                    }
+                }))
+            })
+    );
 });
